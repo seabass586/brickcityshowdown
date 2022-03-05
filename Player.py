@@ -29,4 +29,4 @@ class Player(pygame.sprite.Sprite):
     def shooter(self):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         shooter.all_sprites.add(bullet)
-        bullets.add(bullet)
+        shooter.bullets.add(bullet)

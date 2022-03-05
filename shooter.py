@@ -7,8 +7,8 @@ import os
 
 # from tinker import *
 
-WIDTH = 500
-HEIGHT = 768
+WIDTH = 1280
+HEIGHT = 720
 FPS = 60
 
 # define colors
@@ -31,6 +31,8 @@ def main():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("BrickBreaker")
     clock = pygame.time.Clock()
+
+    bg = pygame.image.load("assets/bg.jpg")
 
     all_sprites = pygame.sprite.Group()
     mobs = pygame.sprite.Group()
@@ -67,7 +69,7 @@ def main():
             running = player.Hit()
 
         # draw/render
-        screen.fill(BLACK)
+        screen.blit(bg, (0, 0))
         all_sprites.draw(screen)
 
         # text

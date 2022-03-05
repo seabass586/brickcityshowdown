@@ -2,11 +2,10 @@ import pygame
 import shooter
 import Bullet
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.HP = 200;
+        self.HP = 3;
         self.image = pygame.Surface((20, 20))
         self.image.fill(shooter.GREEN)
         self.rect = self.image.get_rect()

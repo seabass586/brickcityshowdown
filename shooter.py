@@ -1,6 +1,6 @@
 import pygame
 import Mob
-import Player 
+import Player
 import Bullet
 import random
 import os
@@ -24,10 +24,12 @@ mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player.Player()
 
+
 def UI_setup():
     pygame.init()
     pygame.mixer.init()
     pygame.font.init()
+
 
 def main():
     UI_setup()
@@ -49,6 +51,8 @@ def main():
 
     # Game loop
     running = True
+    immune = False
+    collision_time = 0
 
     while running:
         # keep loop running at right speed
@@ -66,10 +70,15 @@ def main():
         all_sprites.update()
         mobs.update()
 
+        if (pygame.time.get_ticks() - collision_time) > 2000:
+            immune = False
+
         # check to see if a mob hit the player
         hits = pygame.sprite.spritecollide(player, mobs, False)
-        if hits:
+        if hits and immune is False:
             running = player.Hit()
+            collision_time = pygame.time.get_ticks()
+            immune = True
 
         # draw/render
         screen.fill(BLACK)
@@ -77,15 +86,16 @@ def main():
         all_sprites.draw(screen)
 
         # text
-        score = 0;
+        HP = player.HP
         myfont = pygame.font.SysFont('Comic Sans MS', 30)
-        textsurface = myfont.render('Score: ' + str(score), False, WHITE)
+        textsurface = myfont.render('Health: ' + str(HP), False, WHITE)
         screen.blit(textsurface, (0, 0))
 
         # after drawing everything, flip the display
         pygame.display.flip()
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()

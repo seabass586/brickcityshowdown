@@ -2,6 +2,7 @@ import pygame
 import shooter
 import Bullet
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -27,5 +28,5 @@ class Player(pygame.sprite.Sprite):
 
     def shooter(self):
         bullet = Bullet(self.rect.centerx, self.rect.top)
-        all_sprites.add(bullet)
+        shooter.all_sprites.add(bullet)
         bullets.add(bullet)

@@ -1,6 +1,6 @@
 # BRICK CITY SHOWDOWN
 our submission
-# team members:
+# Team Members:
 - Steve Wufeng
 - Jack Hunsberger
 - Sebastian Hernandez

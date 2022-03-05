@@ -47,10 +47,16 @@ class Player(pygame.sprite.Sprite):
         shooter.bullets.add(bullet)
     
     def isConcious(self):
+        if self.HP == 0:
+            pygame.mixer.music.stop()
         return (self.HP > 0)
     
     def Hit(self):
         if (self.isConcious()):
             self.HP -=1
-        print(self.HP)
+
+        if self.HP == 1:
+            pygame.mixer.music.load("assets/lowHP.mp3")
+            pygame.mixer.music.play(-1)
+
         return self.isConcious()

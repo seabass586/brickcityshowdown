@@ -70,6 +70,7 @@ def main():
         all_sprites.update()
         mobs.update()
 
+        # if the player is no longer immune to damage, turn off immunity
         if (pygame.time.get_ticks() - collision_time) > 2000:
             immune = False
 
@@ -79,6 +80,7 @@ def main():
             running = player.Hit()
             collision_time = pygame.time.get_ticks()
             immune = True
+
 
         # draw/render
         screen.fill(BLACK)

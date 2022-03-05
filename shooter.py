@@ -19,10 +19,13 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 
-def main():
+def UI_setup():
     pygame.init()
     pygame.mixer.init()
     pygame.font.init()
+
+def main():
+    UI_setup()
 
     # initialize pygame and create window
     screen = pygame.display.set_mode((WIDTH, HEIGHT))

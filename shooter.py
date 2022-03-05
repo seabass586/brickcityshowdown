@@ -19,6 +19,11 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
 
+all_sprites = pygame.sprite.Group()
+mobs = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
+player = Player.Player()
+
 def UI_setup():
     pygame.init()
     pygame.mixer.init()
@@ -36,10 +41,6 @@ def main():
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
 
-    all_sprites = pygame.sprite.Group()
-    mobs = pygame.sprite.Group()
-    bullets = pygame.sprite.Group()
-    player = Player.Player()
     all_sprites.add(player)
     for i in range(8):
         m = Mob.Mob()
@@ -59,7 +60,7 @@ def main():
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    player.shoot()
+                    player.shooter()
 
         # update
         all_sprites.update()

@@ -43,7 +43,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.left = 490
 
     def shooter(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
+        bullet = Bullet.Bullet(self.rect.centerx, self.rect.top)
         shooter.all_sprites.add(bullet)
         shooter.bullets.add(bullet)
     

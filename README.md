@@ -1,4 +1,4 @@
-# brickhack8
+# BRICK CITY SHOWDOWN
 our submission
 # team members:
 - Steve Wufeng

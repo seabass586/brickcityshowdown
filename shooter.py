@@ -71,8 +71,8 @@ def main():
             running = player.Hit()
 
         # draw/render
-        screen.blit(bg, (0, 0))
-        screen.blit(gb_small, (490, 300))
+        screen.fill(BLACK)
+        screen.blit(gb_small, (490, 390))
         all_sprites.draw(screen)
 
         # text

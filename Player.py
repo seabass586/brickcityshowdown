@@ -6,6 +6,7 @@ import Bullet
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+        self.HP = 3;
         self.image = pygame.Surface((50, 40))
         self.image.fill(shooter.GREEN)
         self.rect = self.image.get_rect()
@@ -13,7 +14,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.bottom = shooter.HEIGHT - 10
         self.speedx = 0
 
-    def update(self):
+    def update(self): # moveing logic
         self.speedx = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
@@ -30,3 +31,11 @@ class Player(pygame.sprite.Sprite):
         bullet = Bullet(self.rect.centerx, self.rect.top)
         shooter.all_sprites.add(bullet)
         shooter.bullets.add(bullet)
+    
+    def isConcious(self):
+        return (self.HP > 0)
+    
+    def Hit(self):
+        if (self.isConcious()):
+            self.HP -=1
+        return self.isConcious

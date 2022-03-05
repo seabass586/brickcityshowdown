@@ -33,6 +33,8 @@ def main():
     clock = pygame.time.Clock()
 
     bg = pygame.image.load("assets/bg.jpg")
+    gb = pygame.image.load("assets/game_box.jpg")
+    gb_small = pygame.transform.scale(gb, (300, 300))
 
     all_sprites = pygame.sprite.Group()
     mobs = pygame.sprite.Group()
@@ -70,6 +72,7 @@ def main():
 
         # draw/render
         screen.blit(bg, (0, 0))
+        screen.blit(gb_small, (490, 300))
         all_sprites.draw(screen)
 
         # text

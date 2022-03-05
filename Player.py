@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
         self.image.fill(shooter.GREEN)
         self.rect = self.image.get_rect()
         self.rect.centerx = shooter.WIDTH / 2
-        self.rect.bottom = shooter.HEIGHT - 10
+        self.rect.bottom = shooter.HEIGHT - 40
         self.speedx = 0
 
     def update(self): # moveing logic
@@ -22,10 +22,10 @@ class Player(pygame.sprite.Sprite):
         if keystate[pygame.K_RIGHT]:
             self.speedx = 4
         self.rect.x += self.speedx
-        if self.rect.right > shooter.WIDTH:
-            self.rect.right = shooter.WIDTH
-        if self.rect.left < 0:
-            self.rect.left = 0
+        if self.rect.right > shooter.WIDTH - 490:
+            self.rect.right = shooter.WIDTH - 490
+        if self.rect.left < 490:
+            self.rect.left = 490
 
     def shooter(self):
         bullet = Bullet(self.rect.centerx, self.rect.top)

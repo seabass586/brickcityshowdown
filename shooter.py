@@ -64,7 +64,7 @@ def main():
         # check to see if a mob hit the player
         hits = pygame.sprite.spritecollide(player, mobs, False)
         if hits:
-            running = False
+            running = player.Hit()
 
         # draw/render
         screen.fill(BLACK)

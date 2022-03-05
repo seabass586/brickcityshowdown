@@ -35,7 +35,8 @@ class Player(pygame.sprite.Sprite):
     def isConcious(self):
         return (self.HP > 0)
     
-    def Hit(self):
+    def Hit(self, mobs):
         if (self.isConcious()):
             self.HP -=1
-        return self.isConcious
+        print(self.HP)
+        return self.isConcious()

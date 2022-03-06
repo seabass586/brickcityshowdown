@@ -101,7 +101,7 @@ def run_game():
                 mob.update_time(pygame.time.get_ticks())
 
         # process collusion with te bullets and the boss
-        boss_collision_detection()
+        boss_collision_detection(rat_song)
 
         # detects collision, changes player HP, and stores data in a tuple
         player_collision_data = player_collision_detection(player_collision_time, player_immune)
@@ -172,13 +172,27 @@ def player_collision_detection(collision_time, immune):
     return collision_time, immune
 
 
-def boss_collision_detection():
+def boss_collision_detection(song):
     if pygame.sprite.spritecollide(boss, bullets, False):
         for bullet in bullets.sprites():
             if pygame.sprite.collide_rect(bullet, boss):
                 boss.HP -= 1
 
                 # if the boss is at 15 hp, spawn more mobs to dodge
+
+                if boss.HP == 25:
+                    song.stop()
+                    mad_song = pygame.mixer.Sound("assets/ANGRY RAT.wav")
+                    mad_song.set_volume(0.2)
+                    pygame.mixer.Sound.play(mad_song, -1)
+                    boss.image = pygame.image.load("assets/buffRat.png")
+
+                    for i in range(2):
+                        m = Mob.Mob()
+                        all_sprites.add(m)
+                        mobs.add(m)
+
+
                 if boss.HP == 10:
                     for i in range(2):
                         m = Mob.Mob()

@@ -1,6 +1,7 @@
 import pygame
 import Mob
 import Player
+import Boss
 import Bullet
 import random
 import os
@@ -22,6 +23,7 @@ all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player.Player()
+boss = Boss.Boss()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 display = pygame.Surface((WIDTH, HEIGHT))
 
@@ -42,13 +44,13 @@ def run_game():
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
-    rickie = pygame.image.load("assets/Rickie.png")
 
     # add the player sprite to the master sprite group
     all_sprites.add(player)
+    all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(4):
+    for i in range(8):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -80,7 +82,7 @@ def run_game():
         collision_time = collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small, rickie)
+        render_game(screen, gb_small)
 
         # present the text onto the screen
         present_text(screen)
@@ -101,10 +103,9 @@ def present_text(screen):
     screen.blit(textsurface, (0, 0))
 
 
-def render_game(screen, game_box, boss):
+def render_game(screen, game_box):
     screen.fill(BLACK)
     screen.blit(game_box, (490, 390))
-    screen.blit(boss, (490, 0))
     all_sprites.draw(screen)
 
 

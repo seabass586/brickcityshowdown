@@ -2,6 +2,7 @@ import pygame
 import shooter
 import Bullet
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -14,7 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
 
-    def update(self): # moving logic
+    def update(self):  # moving logic
         self.speedx = 0
         self.speedy = 0
         keystate = pygame.key.get_pressed()
@@ -22,20 +23,20 @@ class Player(pygame.sprite.Sprite):
             self.speedx = -4
         if keystate[pygame.K_RIGHT]:
             self.speedx = 4
-            
+
         if keystate[pygame.K_UP]:
             self.speedy = -4
         if keystate[pygame.K_DOWN]:
             self.speedy = 4
-            
+
         self.rect.y += self.speedy
         self.rect.x += self.speedx
-        
-        if self.rect.bottom > shooter.HEIGHT-30:
-            self.rect.bottom = shooter.HEIGHT-30 
-        if self.rect.top < shooter.HEIGHT-330:
-            self.rect.top = shooter.HEIGHT-330
-        
+
+        if self.rect.bottom > shooter.HEIGHT - 30:
+            self.rect.bottom = shooter.HEIGHT - 30
+        if self.rect.top < shooter.HEIGHT - 330:
+            self.rect.top = shooter.HEIGHT - 330
+
         if self.rect.right > shooter.WIDTH - 490:
             self.rect.right = shooter.WIDTH - 490
         if self.rect.left < 490:
@@ -45,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         bullet = Bullet.Bullet(self.rect.centerx, self.rect.top)
         shooter.all_sprites.add(bullet)
         shooter.bullets.add(bullet)
-    
+
     def isConcious(self):
         if self.HP <= 0:
             death_sound = pygame.mixer.Sound("assets/DEATH.mp3")
@@ -53,16 +54,15 @@ class Player(pygame.sprite.Sprite):
             pygame.mixer.Sound.play(death_sound)
             pygame.mixer.music.stop()
 
-
         return self.HP > 0
-    
+
     def Hit(self):
         hit_sound = pygame.mixer.Sound("assets/owwFast.wav")
         hit_sound.set_volume(0.2)
         pygame.mixer.Sound.play(hit_sound)
 
         if self.isConcious():
-            self.HP -=1
+            self.HP -= 1
             if self.HP == 1:
                 pygame.mixer.music.load("assets/lowHP.mp3")
                 pygame.mixer.music.play(-1)

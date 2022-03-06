@@ -16,6 +16,7 @@ def storyScreen():
     
     wait_time = 300;
     
+    # skip story page
     while (wait_time > 0):
         for ev in pygame.event.get():     
             if ev.type == pygame.KEYDOWN: 

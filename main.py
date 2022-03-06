@@ -1,6 +1,4 @@
-import pygame
 import Menu
-import shooter
 
 def game_loop():
     Menu.startscreen()

@@ -2,8 +2,6 @@ import pygame
 import Mob
 import Player
 import Boss
-import Bullet
-import random
 from sys import exit
 import Menu
 

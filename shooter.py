@@ -128,8 +128,10 @@ def present_text(screen):
     myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 19)
     player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
     boss_HP_text = myfont.render("Boss Health: " + str(boss_HP), False, WHITE)
+    boss_msg = myfont.render("<Text for boss>", False, WHITE)
     screen.blit(player_HP_text, (89, 415))
     screen.blit(boss_HP_text, (465, 30))
+    screen.blit(boss_msg, (840, 415))
 
 
 def render_game(screen, game_box, game_box2, game_box3, player_HP, dorm_room):

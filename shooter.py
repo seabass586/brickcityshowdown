@@ -1,7 +1,6 @@
 import pygame
 import Mob
 import Player
-import SoundPlayer
 import Bullet
 import random
 import os
@@ -32,7 +31,7 @@ def UI_setup():
     pygame.font.init()
 
 
-def main():
+def run_game():
     UI_setup()
 
     # initialize pygame and create window
@@ -43,8 +42,11 @@ def main():
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
 
+    # add the player sprite to the master sprite group
     all_sprites.add(player)
-    for i in range(8):
+
+    # add 8 mobs to the master sprite group
+    for i in range(4):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -66,7 +68,7 @@ def main():
                 if event.key == pygame.K_SPACE:
                     player.shooter()
 
-        # update
+        # update sprites and mobs
         all_sprites.update()
         mobs.update()
 
@@ -84,7 +86,10 @@ def main():
         # after drawing everything, flip the display
         pygame.display.flip()
 
-    pygame.quit()
+        if player.HP == 0:
+            running = False
+
+    game_over(screen)
 
 
 def present_text(screen):
@@ -115,5 +120,11 @@ def collision_detection(collision_time, immune):
     return collision_time, immune
 
 
-if __name__ == "__main__":
-    main()
+def game_over(screen):
+    while True:
+        screen.fill(BLACK)
+        myfont = pygame.font.SysFont('Comic Sans MS', 30)
+        textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
+        screen.blit(textsurface, (470, 360))
+
+        pygame.display.flip()

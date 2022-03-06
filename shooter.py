@@ -57,8 +57,10 @@ def run_game():
 
     # Game loop
     running = True
-    immune = False
-    collision_time = 0
+    player_immune = False
+    player_collision_time = 0
+    boss_immune = False
+    boss_collision_time = 0
 
     while running:
         # keep loop running at right speed
@@ -77,6 +79,7 @@ def run_game():
         all_sprites.update()
         mobs.update()
 
+        # process collision with mobs and bullets
         for mob in mobs.sprites():
             if pygame.sprite.spritecollide(mob, bullets, False):
                 for bullet in bullets.sprites():
@@ -84,14 +87,15 @@ def run_game():
                         bullet.kill()
                 mob.respawn()
 
-        for bullet in bullets.sprites():
-            if pygame.sprite.collide_rect(bullet, boss):
-                boss.HP -= 1
+        # process collusion with te bullets and the boss
+        boss_collision_data = boss_collision_detection(boss_collision_time, boss_immune)
+        boss_immune = boss_collision_data[1]
+        boss_collision_time = boss_collision_data[0]
 
         # detects collision, changes player HP, and stores data in a tuple
-        collision_data = collision_detection(collision_time, immune)
-        immune = collision_data[1]
-        collision_time = collision_data[0]
+        player_collision_data = player_collision_detection(player_collision_time, player_immune)
+        player_immune = player_collision_data[1]
+        player_collision_time = player_collision_data[0]
 
         # draw/render
         render_game(screen, gb_small)
@@ -104,6 +108,8 @@ def run_game():
 
         if player.HP == 0:
             running = False
+        if boss.HP == 0:
+            victory(screen)
 
     game_over(screen)
 
@@ -124,7 +130,7 @@ def render_game(screen, game_box):
     all_sprites.draw(screen)
 
 
-def collision_detection(collision_time, immune):
+def player_collision_detection(collision_time, immune):
     # if the player is no longer immune to damage, turn off immunity
     if (pygame.time.get_ticks() - collision_time) > 2000:
         immune = False
@@ -137,6 +143,39 @@ def collision_detection(collision_time, immune):
         immune = True
 
     return collision_time, immune
+
+
+def boss_collision_detection(collision_time, immune):
+    # if the player is no longer immune to damage, turn off immunity
+    if (pygame.time.get_ticks() - collision_time) > 300:
+        immune = False
+
+    # check to see if a bullet hit the player
+    if pygame.sprite.spritecollide(boss, bullets, False) and immune == False:
+        boss.HP -= 1
+        collision_time = pygame.time.get_ticks()
+        immune = True
+
+    return collision_time, immune
+
+
+def victory(screen):
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit()
+
+        screen.fill(BLACK)
+        myfont = pygame.font.SysFont('Comic Sans MS', 30)
+        textsurface = myfont.render('YOU DEFEATED RICKIE!', False, WHITE)
+        screen.blit(textsurface, (470, 360))
+
+        pygame.display.flip()
 
 
 def game_over(screen):

@@ -84,6 +84,9 @@ def run_game():
             if pygame.sprite.spritecollide(mob, bullets, False):
                 for bullet in bullets.sprites():
                     if pygame.sprite.spritecollide(bullet, mobs, False):
+                        hit_germ = pygame.mixer.Sound("assets/hit germ.wav")
+                        hit_germ.set_volume(0.1)
+                        pygame.mixer.Sound.play(hit_germ)
                         bullet.kill()
                 if (not mob.isFreezing()):
                     mob.set_end_freeze_time(pygame.time.get_ticks()+1000)

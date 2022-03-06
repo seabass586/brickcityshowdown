@@ -6,6 +6,10 @@ from time import sleep
 
 def storyScreen():
     pygame.init()
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load("assets/ominous intro.mp3")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play()
     pygame.display.set_caption("Story Of the Game")
     res = (shooter.WIDTH, shooter.HEIGHT)
     screen = pygame.display.set_mode(res)
@@ -28,8 +32,10 @@ def storyScreen():
 
         if wait_time <= 200:
             timer = 2
+            new = pygame.transform.scale(pygame.image.load("assets/Story2.jpg"), (1280, 720))
         if wait_time <= 100:
             timer = 1
+            new = pygame.transform.scale(pygame.image.load("assets/Story3.jpg"), (1280, 720))
 
         timer_text = myfont.render('Get ready, in... ' + str(timer), False, shooter.WHITE)
         screen.blit(new, (0, 0))

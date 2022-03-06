@@ -108,6 +108,8 @@ def run_game():
 
         if player.HP == 0:
             running = False
+        if boss.HP == 0:
+            victory(screen)
 
     game_over(screen)
 
@@ -145,7 +147,7 @@ def player_collision_detection(collision_time, immune):
 
 def boss_collision_detection(collision_time, immune):
     # if the player is no longer immune to damage, turn off immunity
-    if (pygame.time.get_ticks() - collision_time) > 2000:
+    if (pygame.time.get_ticks() - collision_time) > 300:
         immune = False
 
     # check to see if a bullet hit the player
@@ -155,6 +157,25 @@ def boss_collision_detection(collision_time, immune):
         immune = True
 
     return collision_time, immune
+
+
+def victory(screen):
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit()
+
+        screen.fill(BLACK)
+        myfont = pygame.font.SysFont('Comic Sans MS', 30)
+        textsurface = myfont.render('YOU DEFEATED RICKIE!', False, WHITE)
+        screen.blit(textsurface, (470, 360))
+
+        pygame.display.flip()
 
 
 def game_over(screen):

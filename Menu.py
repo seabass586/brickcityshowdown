@@ -13,8 +13,8 @@ mouse = 0
 
 res = (shooter.WIDTH, shooter.HEIGHT)
 screen = pygame.display.set_mode(res) 
-bigfont = pygame.font.SysFont('Comics Sans MS',50) 
-smallfont = pygame.font.SysFont('Comics Sans MS',35) 
+bigfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 20) 
+smallfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 12) 
 text1 = smallfont.render("Start", True, shooter.WHITE)
 text2 = smallfont.render("Help", True, shooter.WHITE)
 text3 = smallfont.render('Quit' , True , shooter.WHITE) 
@@ -95,31 +95,31 @@ def deathscreen():
 
 def winningscreen():
     pygame.mixer.music.stop()
-    text1 = bigfont.render('RICKIE HAS REMAINED THE MASCOT!', False, shooter.WHITE)
-    text2 = smallfont.render('Exit Game', False, shooter.WHITE)
-
+    
+    text1 = smallfont.render('Exit Game', False, shooter.WHITE)
+    bg = pygame.image.load("assets/winScreen.png")
+    bg = pygame.transform.scale(bg, (1280, 720))
     while True:  
         for ev in pygame.event.get():     
             if ev.type == pygame.QUIT: 
                 pygame.quit()
                 exit()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
-                if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
+                if 560 <= mouse[0] <= 560+140 and 655 <= mouse[1] <= 655+40: 
                     pygame.quit()
                     exit()
 
         mouse = pygame.mouse.get_pos() 
 
         screen.fill(shooter.BLACK)
-        screen.blit(rickie,(500, 255))
+        screen.blit(bg, (0,0))
 
-        if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
-            pygame.draw.rect(screen, GREY,[550,550,140,40]) 
+        if 560 <= mouse[0] <= 560+140 and 655 <= mouse[1] <= 655+40: 
+            pygame.draw.rect(screen, GREY,[550,650,140,40]) 
         else: 
-            pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
+            pygame.draw.rect(screen,DARK_GREY,[550,650,140,40]) 
 
-        screen.blit(text1, (325, 150))
-        screen.blit(text2, (560, 555))
+        screen.blit(text1, (560, 655))
 
         pygame.display.update()
 

@@ -179,7 +179,10 @@ def render_game(screen, game_box, game_box2, game_box3, player_HP, dorm_room):
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(pygame.transform.scale(game_box3, (400, 290)), (830, 400))
-    screen.blit(player_img, (110, 440))
+    if (pygame.time.get_ticks() % 2000 > 1000):
+        screen.blit(player_img, (110, 430))
+    else:
+        screen.blit(player_img, (110, 440))
 
     all_sprites.draw(screen)
 

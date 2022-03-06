@@ -38,7 +38,7 @@ def run_game():
     UI_setup()
 
     # initialize pygame and create window
-    pygame.display.set_caption("BrickBreaker")
+    pygame.display.set_caption("Brick City Showdown")
     clock = pygame.time.Clock()
 
     bg = pygame.image.load("assets/bg.jpg")
@@ -59,8 +59,6 @@ def run_game():
     running = True
     player_immune = False
     player_collision_time = 0
-    boss_immune = False
-    boss_collision_time = 0
 
     while running:
         # keep loop running at right speed
@@ -89,7 +87,7 @@ def run_game():
                 mob.respawn()
 
         # process collusion with te bullets and the boss
-        boss_collision_data = boss_collision_detection()
+        boss_collision_detection()
 
         # detects collision, changes player HP, and stores data in a tuple
         player_collision_data = player_collision_detection(player_collision_time, player_immune)
@@ -107,7 +105,7 @@ def run_game():
 
         if player.HP == 0:
             running = False
-        if boss.HP == 0:
+        if boss.HP <= 0:
             victory(screen)
 
     game_over(screen)

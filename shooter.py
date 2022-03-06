@@ -29,7 +29,7 @@ def UI_setup():
     pygame.font.init()
 
 
-def main():
+def run_game():
     UI_setup()
 
     # initialize pygame and create window
@@ -41,8 +41,11 @@ def main():
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
 
+    # add the player sprite to the master sprite group
     all_sprites.add(player)
-    for i in range(8):
+
+    # add 8 mobs to the master sprite group
+    for i in range(4):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -124,8 +127,3 @@ def game_over(screen):
         screen.blit(textsurface, (470, 360))
 
         pygame.display.flip()
-
-
-
-if __name__ == "__main__":
-    main()

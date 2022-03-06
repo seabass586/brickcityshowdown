@@ -144,9 +144,15 @@ def present_text(screen):
         boss_msg1 = myfont.render("Now you've gone and", False, WHITE)
         boss_msg2 = myfont.render("made me angry! Take", False, WHITE)
         boss_msg3 = myfont.render("this!", False, WHITE)
+        boss_msg4 = myfont.render("TIP: Don't spam!", False, WHITE)
+        boss_msg5 = myfont.render("Wait for bacteria", False, WHITE)
+        boss_msg6 = myfont.render("to disappear!", False, WHITE)
         screen.blit(boss_msg1, (840, 415))
         screen.blit(boss_msg2, (840, 440))
         screen.blit(boss_msg3, (840, 465))
+        screen.blit(boss_msg4, (840, 500+40))
+        screen.blit(boss_msg5, (840, 525+40))
+        screen.blit(boss_msg6, (840, 550+40))
     elif boss.HP <= 10:
         boss_msg1 = myfont.render("No! This isn't", False, WHITE)
         boss_msg2 = myfont.render("possible! Germs,", False, WHITE)
@@ -199,8 +205,6 @@ def boss_collision_detection(song):
             if pygame.sprite.collide_rect(bullet, boss):
                 boss.HP -= 1
 
-                # if the boss is at 15 hp, spawn more mobs to dodge
-
                 if boss.HP == 25:
                     boss.rage = True
                     song.stop()
@@ -209,16 +213,10 @@ def boss_collision_detection(song):
                     pygame.mixer.Sound.play(mad_song, -1)
                     boss.image = pygame.transform.scale(pygame.image.load("assets/buffRat.png"), (200, 200))
 
-                    for i in range(2):
-                        m = Mob.Mob()
-                        all_sprites.add(m)
-                        mobs.add(m)
-
                 if boss.HP == 10:
-                    for i in range(1):
-                        m = Mob.Mob()
-                        all_sprites.add(m)
-                        mobs.add(m)
+                    m = Mob.Mob()
+                    all_sprites.add(m)
+                    mobs.add(m)
                 hit_sound = pygame.mixer.Sound("assets/bossHit.mp3")
                 hit_sound.set_volume(0.2)
                 pygame.mixer.Sound.play(hit_sound)

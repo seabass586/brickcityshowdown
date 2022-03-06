@@ -22,22 +22,29 @@ bg = pygame.image.load("assets/mainScreen.png")
 dead = pygame.image.load("assets/Loss_screen.png")
 rickie = pygame.image.load("assets/Rickie.png")
 
-def startscreen():  
+def startscreen():
+    opening = pygame.mixer.Sound("assets/OVERTURE2.mp3")
+    opening.set_volume(0.3)
+    pygame.mixer.Sound.play(opening)
     while True:  
         for ev in pygame.event.get():     
-            if ev.type == pygame.QUIT: 
+            if ev.type == pygame.QUIT:
+                pygame.mixer.Sound.stop(opening)
                 pygame.quit()
                 exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 610 <= mouse[0] <= 610+140 and 450 <= mouse[1] <= 490:
                     Story.storyScreen()
+                    pygame.mixer.Sound.stop(opening)
                     shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 610 <= mouse[0] <= 610+140 and 550 <= mouse[1] <= 590:
                     Story.controlHelpScreen() 
             if ev.type == pygame.MOUSEBUTTONDOWN: 
-                if 610 <= mouse[0] <= 610+140 and 650 <= mouse[1] <= 690: 
-                    pygame.quit() 
+                if 610 <= mouse[0] <= 610+140 and 650 <= mouse[1] <= 690:
+                    pygame.mixer.Sound.stop(opening)
+                    pygame.quit()
+                    exit()
 
         mouse = pygame.mouse.get_pos() 
         new = pygame.transform.scale(bg, (1280, 720))

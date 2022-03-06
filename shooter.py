@@ -42,6 +42,7 @@ def run_game():
     pygame.display.set_caption("Brick City Showdown")
     clock = pygame.time.Clock()
 
+    dorm_room = pygame.image.load("assets/dormFloor.png")
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
@@ -51,7 +52,7 @@ def run_game():
     all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(4):
+    for i in range(6):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -100,13 +101,14 @@ def run_game():
         player_collision_time = player_collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small, player.HP)
+        render_game(screen, gb_small, player.HP, dorm_room)
 
         # present the text onto the screen
         present_text(screen)
 
         # after drawing everything, flip the display
         pygame.display.flip()
+
 
         if player.HP == 0:
             running = False
@@ -118,24 +120,27 @@ def run_game():
 def present_text(screen):
     player_HP = player.HP
     boss_HP = boss.HP
-    myfont = pygame.font.SysFont('Comic Sans MS', 30)
+    myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 30)
     player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
     boss_HP_text = myfont.render("Rickie's Health: " + str(boss_HP), False, WHITE)
     screen.blit(player_HP_text, (0, 0))
     screen.blit(boss_HP_text, (0, 40))
 
 
-def render_game(screen, game_box, player_HP):
+def render_game(screen, game_box, player_HP, dorm_room):
     if player_HP == 3:
         player_img = pygame.image.load("assets/Rickie.png")
     elif player_HP == 2:
-        player_img = pygame.image.load("assets/Player_half_health.png")
+        player_img = pygame.image.load("assets/Rickie2.png")
     else:
-        player_img = pygame.image.load("assets/Player_one_health.png")
+        player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
+    screen.blit(dorm_room, (0, 360))
     screen.blit(game_box, (490, 390))
-    screen.blit(player_img, (200, 390))
+    screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
+    screen.blit(player_img, (110, 440))
+
     all_sprites.draw(screen)
 
 
@@ -159,6 +164,16 @@ def boss_collision_detection():
         for bullet in bullets.sprites():
             if pygame.sprite.collide_rect(bullet, boss):
                 boss.HP -= 1
+
+                # if the boss is at 15 hp, spawn more mobs to dodge
+                if boss.HP == 15:
+                    for i in range(2):
+                        m = Mob.Mob()
+                        all_sprites.add(m)
+                        mobs.add(m)
+                hit_sound = pygame.mixer.Sound("assets/bossHit.mp3")
+                hit_sound.set_volume(0.2)
+                pygame.mixer.Sound.play(hit_sound)
                 bullet.kill()
 
 

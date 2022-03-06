@@ -7,6 +7,7 @@ pygame.display.set_caption("Start Game")
 
 GREY = (170,170,170)
 DARK_GREY = (100,100,100)
+mouse = 0
 
 res = (shooter.WIDTH, shooter.HEIGHT)
 screen = pygame.display.set_mode(res) 
@@ -48,7 +49,13 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
+<<<<<<< HEAD
     text1 = bigfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
+=======
+    pygame.mixer.music.stop()
+
+    text1 = smallfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
+>>>>>>> 09bb0e5b07d8f7ea9f8e63676d495395e3805e34
     text2 = smallfont.render('One more time!', False, shooter.WHITE)
     text3 = smallfont.render('I give up...', False, shooter.WHITE)
 

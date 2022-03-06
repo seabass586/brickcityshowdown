@@ -24,8 +24,6 @@ class Mob(pygame.sprite.Sprite):
             self.respawn()
 
     def respawn(self):
-
-
         self.rect.x = random.randrange(490, 790 - self.rect.width)
         self.rect.y = 390
         if (self.freeze):
@@ -37,8 +35,11 @@ class Mob(pygame.sprite.Sprite):
         if (time - self.end_freeze_time > 0):
             self.freeze = False
             self.end_freeze_time = -1
+            self.image.fill(shooter.RED)
+            self.respawn()
         else:
             self.freeze = True
+            self.image.fill(shooter.SHADED_RED)
     
     def set_end_freeze_time(self, end_time):
         self.end_freeze_time = end_time 

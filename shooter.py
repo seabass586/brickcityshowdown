@@ -19,6 +19,7 @@ FPS = 60
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 BLUE = (0, 0, 255)
+SHADED_RED = (127, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 YELLOW = (255, 255, 0)
@@ -91,7 +92,7 @@ def run_game():
                     mob.set_end_freeze_time(pygame.time.get_ticks()+1000)
                     mob.update_time(pygame.time.get_ticks())
                     mob.respawn()
-            if (mob.isFreezing()):
+            if (mob.isFreezing()):    
                 mob.update_time(pygame.time.get_ticks())
 
         # process collusion with te bullets and the boss
@@ -103,7 +104,7 @@ def run_game():
         player_collision_time = player_collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small)
+        render_game(screen, gb_small, player.HP)
 
         # present the text onto the screen
         present_text(screen)
@@ -128,9 +129,17 @@ def present_text(screen):
     screen.blit(boss_HP_text, (0, 40))
 
 
-def render_game(screen, game_box):
+def render_game(screen, game_box, player_HP):
+    if player_HP == 3:
+        player_img = pygame.image.load("assets/Player_full_health.png")
+    elif player_HP == 2:
+        player_img = pygame.image.load("assets/Player_half_health.png")
+    else:
+        player_img = pygame.image.load("assets/Player_one_health.png")
+    
     screen.fill(BLACK)
     screen.blit(game_box, (490, 390))
+    screen.blit(player_img, (200, 390))
     all_sprites.draw(screen)
 
 

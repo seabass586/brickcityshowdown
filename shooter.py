@@ -145,8 +145,9 @@ def player_collision_detection(collision_time, immune):
 def boss_collision_detection():
     if pygame.sprite.spritecollide(boss, bullets, False):
         for bullet in bullets.sprites():
-            boss.HP -= 1
-            bullet.kill()
+            if pygame.sprite.collide_rect(bullet, boss):
+                boss.HP -= 1
+                bullet.kill()
 
 
 def victory(screen):

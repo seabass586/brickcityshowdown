@@ -85,6 +85,8 @@ def main():
         if player.HP == 0:
             running = False
 
+    game_over(screen)
+
 
 def present_text(screen):
     HP = player.HP
@@ -115,13 +117,14 @@ def collision_detection(collision_time, immune):
 
 
 def game_over(screen):
-    screen.fill(BLACK)
-    myfont = pygame.font.SysFont('Comic Sans MS', 30)
-    textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
-    screen.blit(textsurface, (640, 360))
+    while True:
+        screen.fill(BLACK)
+        myfont = pygame.font.SysFont('Comic Sans MS', 30)
+        textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
+        screen.blit(textsurface, (470, 360))
 
-    pygame.display.flip()
-    return False
+        pygame.display.flip()
+
 
 
 if __name__ == "__main__":

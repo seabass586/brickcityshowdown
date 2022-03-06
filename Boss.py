@@ -7,10 +7,10 @@ class Boss(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.HP = 30
-        self.image = pygame.image.load("assets/Player_full_health.png")
+        self.image = pygame.transform.scale(pygame.image.load("assets/rat.png"), (200,200))
         self.rect = self.image.get_rect()
         self.rect.centerx = 190
-        self.rect.bottom = 350
+        self.rect.bottom = 310
         self.speedx = 2
         self.moved = 0
         self.move_right = True

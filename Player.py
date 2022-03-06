@@ -7,7 +7,7 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.HP = 3;
         self.image = pygame.Surface((20, 20))
-        self.image.fill(shooter.GREEN)
+        self.image.fill((255, 215, 0))
         self.rect = self.image.get_rect()
         self.rect.centerx = shooter.WIDTH / 2
         self.rect.bottom = shooter.HEIGHT - 40

@@ -12,7 +12,7 @@ class Mob(pygame.sprite.Sprite):
             self.image = pygame.image.load("assets/bacteria1.png")
         elif random_var == 1:
             self.image = pygame.image.load("assets/bacteria2.png")
-        elif random_var == 2:
+        else:
             self.image = pygame.image.load("assets/bacteria3.png")
 
 

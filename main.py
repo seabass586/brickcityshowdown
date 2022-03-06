@@ -3,7 +3,7 @@ import Menu
 import shooter
 
 def game_loop():
-    Menu()
+    Menu.startscreen()
     shooter.run_game()
 
 def main():

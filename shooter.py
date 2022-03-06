@@ -1,3 +1,4 @@
+from ast import While
 import pygame
 import Mob
 import Player
@@ -185,6 +186,8 @@ def game_over(screen):
         screen.fill(BLACK)
         myfont = pygame.font.SysFont('Comic Sans MS', 30)
         textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
+        text2 = myfont.render('Want to try again?', False, WHITE )
         screen.blit(textsurface, (470, 360))
+        screen.blit(text2, (470, 360))
 
         pygame.display.flip()

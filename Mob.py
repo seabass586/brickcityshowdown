@@ -37,8 +37,10 @@ class Mob(pygame.sprite.Sprite):
         if (time - self.end_freeze_time > 0):
             self.freeze = False
             self.end_freeze_time = -1
+            self.image.fill(shooter.RED)
         else:
             self.freeze = True
+            self.image.fill(shooter.SHADED_RED)
     
     def set_end_freeze_time(self, end_time):
         self.end_freeze_time = end_time 

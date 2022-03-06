@@ -33,6 +33,7 @@ def storyScreen():
         if wait_time <= 200:
             timer = 2
             new = pygame.transform.scale(pygame.image.load("assets/Story2.jpg"), (1280, 720))
+            sleep(0.01)
         if wait_time <= 100:
             timer = 1
             new = pygame.transform.scale(pygame.image.load("assets/Story3.jpg"), (1280, 720))

@@ -89,9 +89,7 @@ def run_game():
                 mob.respawn()
 
         # process collusion with te bullets and the boss
-        boss_collision_data = boss_collision_detection(boss_collision_time, boss_immune)
-        boss_immune = boss_collision_data[1]
-        boss_collision_time = boss_collision_data[0]
+        boss_collision_data = boss_collision_detection()
 
         # detects collision, changes player HP, and stores data in a tuple
         player_collision_data = player_collision_detection(player_collision_time, player_immune)
@@ -146,18 +144,11 @@ def player_collision_detection(collision_time, immune):
     return collision_time, immune
 
 
-def boss_collision_detection(collision_time, immune):
-    # if the player is no longer immune to damage, turn off immunity
-    if (pygame.time.get_ticks() - collision_time) > 200:
-        immune = False
-
-    # check to see if a bullet hit the player
-    if pygame.sprite.spritecollide(boss, bullets, False) and immune == False:
-        boss.HP -= 1
-        collision_time = pygame.time.get_ticks()
-        immune = True
-
-    return collision_time, immune
+def boss_collision_detection():
+    if pygame.sprite.spritecollide(boss, bullets, False):
+        for bullet in bullets.sprites():
+            boss.HP -= 1
+            bullet.kill()
 
 
 def victory(screen):

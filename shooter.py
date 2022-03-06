@@ -1,13 +1,9 @@
-from ast import While
-from asyncio import run
-from pickle import MEMOIZE
 import pygame
 import Mob
 import Player
 import Boss
 import Bullet
 import random
-import os
 from sys import exit
 import Menu
 

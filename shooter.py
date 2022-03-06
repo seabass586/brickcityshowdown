@@ -120,11 +120,11 @@ def run_game():
 def present_text(screen):
     player_HP = player.HP
     boss_HP = boss.HP
-    myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 30)
+    myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 19)
     player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
-    boss_HP_text = myfont.render("Rickie's Health: " + str(boss_HP), False, WHITE)
-    screen.blit(player_HP_text, (0, 0))
-    screen.blit(boss_HP_text, (0, 40))
+    boss_HP_text = myfont.render("Boss Health: " + str(boss_HP), False, WHITE)
+    screen.blit(player_HP_text, (89, 415))
+    screen.blit(boss_HP_text, (465, 30))
 
 
 def render_game(screen, game_box, player_HP, dorm_room):
@@ -136,7 +136,7 @@ def render_game(screen, game_box, player_HP, dorm_room):
         player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
-    screen.blit(dorm_room, (0, 360))
+    screen.blit(dorm_room, (0, 0))
     screen.blit(game_box, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(player_img, (110, 440))

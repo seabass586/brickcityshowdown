@@ -6,7 +6,7 @@ import Bullet
 class Boss(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.HP = 25
+        self.HP = 30
         self.image = pygame.image.load("assets/Rickie.png")
         self.rect = self.image.get_rect()
         self.rect.centerx = 190

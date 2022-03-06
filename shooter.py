@@ -43,9 +43,10 @@ def run_game():
     dorm_room = pygame.image.load("assets/dormFloor.png")
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
-    gb2 = pygame.image.load("assets/game_box - Copy.jpg")
+    gb2 = pygame.image.load("assets/game_box - Copy.png")
     gb_small = pygame.transform.scale(gb, (300, 300))
     gb_small2 = pygame.transform.scale(gb2, (300, 300))
+    gb_small3 = pygame.transform.scale(gb, (300, 300))
 
     # add the player sprite to the master sprite group
     all_sprites.add(player)
@@ -84,6 +85,9 @@ def run_game():
             if pygame.sprite.spritecollide(mob, bullets, False):
                 for bullet in bullets.sprites():
                     if pygame.sprite.spritecollide(bullet, mobs, False):
+                        hit_germ = pygame.mixer.Sound("assets/hit germ.wav")
+                        hit_germ.set_volume(0.1)
+                        pygame.mixer.Sound.play(hit_germ)
                         bullet.kill()
                 if (not mob.isFreezing()):
                     mob.set_end_freeze_time(pygame.time.get_ticks()+1000)
@@ -101,7 +105,7 @@ def run_game():
         player_collision_time = player_collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small, gb_small2, player.HP, dorm_room)
+        render_game(screen, gb_small, gb_small2, gb_small3, player.HP, dorm_room)
 
         # present the text onto the screen
         present_text(screen)
@@ -128,7 +132,7 @@ def present_text(screen):
     screen.blit(boss_HP_text, (465, 30))
 
 
-def render_game(screen, game_box, game_box2, player_HP, dorm_room):
+def render_game(screen, game_box, game_box2, game_box3, player_HP, dorm_room):
     if player_HP == 3:
         player_img = pygame.image.load("assets/Rickie.png")
     elif player_HP == 2:
@@ -141,6 +145,7 @@ def render_game(screen, game_box, game_box2, player_HP, dorm_room):
     screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,640))
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
+    screen.blit(pygame.transform.scale(game_box3, (400, 290)), (830, 400))
     screen.blit(player_img, (110, 440))
 
     all_sprites.draw(screen)

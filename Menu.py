@@ -1,3 +1,4 @@
+from textwrap import fill
 import pygame
 import shooter
 import Story
@@ -19,6 +20,7 @@ text2 = smallfont.render("Help", True, shooter.WHITE)
 text3 = smallfont.render('Quit' , True , shooter.WHITE) 
 bg = pygame.image.load("assets/mainScreen.png")
 dead = pygame.image.load("assets/Loss_screen.png")
+rickie = pygame.image.load("assets/Rickie.png")
 
 def startscreen():  
     while True:  
@@ -93,8 +95,7 @@ def deathscreen():
 
 def winningscreen():
     pygame.mixer.music.stop()
-    text1 = bigfont.render('YOU WON!', False, shooter.WHITE)
-    pygame.mixer.music.stop()
+    text1 = bigfont.render('RICKIE HAS REMAINED THE MASCOT!', False, shooter.WHITE)
     text2 = smallfont.render('Exit Game', False, shooter.WHITE)
 
     while True:  
@@ -110,13 +111,14 @@ def winningscreen():
         mouse = pygame.mouse.get_pos() 
 
         screen.fill(shooter.BLACK)
+        screen.blit(rickie,(500, 255))
 
         if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
             pygame.draw.rect(screen, GREY,[550,550,140,40]) 
         else: 
             pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
 
-        screen.blit(text1, (535, 150))
+        screen.blit(text1, (325, 150))
         screen.blit(text2, (560, 555))
 
         pygame.display.update()

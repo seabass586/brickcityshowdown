@@ -85,7 +85,12 @@ def run_game():
                 for bullet in bullets.sprites():
                     if pygame.sprite.spritecollide(bullet, mobs, False):
                         bullet.kill()
-                mob.respawn()
+                if (not mob.isFreezing()):
+                    mob.set_end_freeze_time(pygame.time.get_ticks()+2000)
+                    mob.update_time(pygame.time.get_ticks())
+                    mob.respawn()
+            if (mob.isFreezing()):
+                mob.update_time(pygame.time.get_ticks())
 
         # process collusion with te bullets and the boss
         boss_collision_data = boss_collision_detection(boss_collision_time, boss_immune)

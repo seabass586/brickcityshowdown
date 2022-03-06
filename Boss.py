@@ -10,7 +10,7 @@ class Boss(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(pygame.image.load("assets/rat.png"), (200,200))
         self.rect = self.image.get_rect()
         self.rect.centerx = 190
-        self.rect.bottom = 310
+        self.rect.bottom = 360
         self.speedx = 2
         self.moved = 0
         self.move_right = True

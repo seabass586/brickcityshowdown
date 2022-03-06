@@ -50,7 +50,7 @@ def run_game():
     all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(8):
+    for i in range(4):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -85,6 +85,7 @@ def run_game():
                 for bullet in bullets.sprites():
                     if pygame.sprite.spritecollide(bullet, mobs, False):
                         bullet.kill()
+
                 mob.respawn()
 
         # process collusion with te bullets and the boss
@@ -147,7 +148,7 @@ def player_collision_detection(collision_time, immune):
 
 def boss_collision_detection(collision_time, immune):
     # if the player is no longer immune to damage, turn off immunity
-    if (pygame.time.get_ticks() - collision_time) > 300:
+    if (pygame.time.get_ticks() - collision_time) > 200:
         immune = False
 
     # check to see if a bullet hit the player
@@ -160,6 +161,8 @@ def boss_collision_detection(collision_time, immune):
 
 
 def victory(screen):
+    pygame.mixer.music.stop()
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

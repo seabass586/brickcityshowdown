@@ -23,6 +23,8 @@ class Mob(pygame.sprite.Sprite):
             self.speedy = random.randrange(1, 4)
 
     def respawn(self):
+
+
         self.rect.x = random.randrange(490, 790 - self.rect.width)
         self.rect.y = 390
         self.speedy = random.randrange(1, 4)

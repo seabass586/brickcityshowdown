@@ -86,7 +86,7 @@ def run_game():
                     if pygame.sprite.spritecollide(bullet, mobs, False):
                         bullet.kill()
                 if (not mob.isFreezing()):
-                    mob.set_end_freeze_time(pygame.time.get_ticks()+2000)
+                    mob.set_end_freeze_time(pygame.time.get_ticks()+1000)
                     mob.update_time(pygame.time.get_ticks())
                     mob.respawn()
             if (mob.isFreezing()):

@@ -16,3 +16,6 @@ class Bullet(pygame.sprite.Sprite):
         # kill if off top of screen
         if self.rect.bottom < 0:
             self.kill()
+        
+    def killMySelf(self):
+        self.kill()

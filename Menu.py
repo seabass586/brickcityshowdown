@@ -34,7 +34,7 @@ def startscreen():
                     shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 610 <= mouse[0] <= 610+140 and 550 <= mouse[1] <= 590:
-                    pygame.quit() 
+                    Story.controlHelpScreen() 
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 610 <= mouse[0] <= 610+140 and 650 <= mouse[1] <= 690: 
                     pygame.quit() 

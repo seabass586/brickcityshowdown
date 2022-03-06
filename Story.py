@@ -25,7 +25,9 @@ def storyScreen():
         sleep(0.01)
     
 def controlHelpScreen():
-    while True:
+    
+    isEscaped = False 
+    while not isEscaped:
         pygame.init()
         pygame.display.set_caption("Story Of the Game")
         res = (shooter.WIDTH, shooter.HEIGHT)
@@ -33,30 +35,28 @@ def controlHelpScreen():
         bg = pygame.image.load("assets/controls.png")
         new = pygame.transform.scale(bg, (1280, 720))
         screen.blit(new, (0, 0))
-        pygame.display.update()
-    
         # navigate through pages
+        pygame.display.update()
         for ev in pygame.event.get():     
             if ev.type == pygame.KEYDOWN:
                 if ev.key == pygame.K_RIGHT:
                     if (storyHelpScreen()):
-                        break
+                        isEscaped = not isEscaped
                 elif ev.key == pygame.K_ESCAPE:
-                    break
+                    isEscaped = not isEscaped
                 
                 
 def storyHelpScreen():
-    while True:
+    isEscaped = False
+    while not isEscaped:
         pygame.init()
         pygame.display.set_caption("Story Of the Game")
         res = (shooter.WIDTH, shooter.HEIGHT)
         screen = pygame.display.set_mode(res) 
-        bg = pygame.image.load("assets/controls.png")
+        bg = pygame.image.load("assets/tutorialScreen2.png")
         new = pygame.transform.scale(bg, (1280, 720))
         screen.blit(new, (0, 0))
         pygame.display.update()
-    
-        # next page
         for ev in pygame.event.get():     
             if ev.type == pygame.KEYDOWN:
                 if ev.key == pygame.K_LEFT:

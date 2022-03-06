@@ -42,8 +42,8 @@ def startscreen():
         else: 
             pygame.draw.rect(screen,DARK_GREY,[shooter.WIDTH/2,shooter.HEIGHT/2,140,40]) 
 
-        screen.blit(text1, (600, 300)) 
-        screen.blit(text2, (600, 400)) 
+        screen.blit(text1, (680, shooter.HEIGHT/3 + 10)) 
+        screen.blit(text2, (680, shooter.HEIGHT/2 + 10)) 
 
         pygame.display.update() 
 

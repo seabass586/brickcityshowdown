@@ -4,7 +4,7 @@ our submission
 - Steve Wufeng
 - Jack Hunsberger
 - Sebastian Hernandez
-- Kelly Chen
+- Kelly Chen (I created an outline of a shmup game and drew all the artworks to the game.)
 
 ## Inspiration
 We were inspired by the game Undertale with its unique gameplay along with the classic game of asteroid, so we combined the two together to create something new.

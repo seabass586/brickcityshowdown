@@ -7,7 +7,7 @@ class Boss(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.HP = 30
-        self.image = pygame.image.load("assets/Rickie.png")
+        self.image = pygame.image.load("assets/Player_full_health.png")
         self.rect = self.image.get_rect()
         self.rect.centerx = 190
         self.rect.bottom = 350

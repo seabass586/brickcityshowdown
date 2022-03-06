@@ -46,6 +46,7 @@ def run_game():
     pygame.display.set_caption("Brick City Showdown")
     clock = pygame.time.Clock()
 
+    dorm_room = pygame.image.load("assets/dormFloor.png")
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
@@ -104,7 +105,7 @@ def run_game():
         player_collision_time = player_collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small, player.HP)
+        render_game(screen, gb_small, player.HP, dorm_room)
 
         # present the text onto the screen
         present_text(screen)
@@ -129,7 +130,7 @@ def present_text(screen):
     screen.blit(boss_HP_text, (0, 40))
 
 
-def render_game(screen, game_box, player_HP):
+def render_game(screen, game_box, player_HP, dorm_room):
     if player_HP == 3:
         player_img = pygame.image.load("assets/Rickie.png")
     elif player_HP == 2:
@@ -138,8 +139,11 @@ def render_game(screen, game_box, player_HP):
         player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
+    screen.blit(dorm_room, (0, 360))
     screen.blit(game_box, (490, 390))
+    screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(player_img, (110, 440))
+
     all_sprites.draw(screen)
 
 

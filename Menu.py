@@ -48,6 +48,8 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
+    pygame.mixer.music.stop()
+
     text1 = smallfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
     text2 = smallfont.render('One more time!', False, shooter.WHITE)
     text3 = smallfont.render('I give up...', False, shooter.WHITE)

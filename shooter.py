@@ -63,6 +63,10 @@ def run_game():
     player_immune = False
     player_collision_time = 0
 
+    rat_song = pygame.mixer.Sound("assets/rat song.mp3")
+    rat_song.set_volume(0.2)
+    pygame.mixer.Sound.play(rat_song, -1)
+
     while running:
         # keep loop running at right speed
         clock.tick(FPS)

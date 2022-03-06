@@ -193,6 +193,6 @@ def game_over(screen):
         textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
         text2 = myfont.render('Want to try again?', False, WHITE )
         screen.blit(textsurface, (470, 360))
-        screen.blit(text2, (470, 360))
+        screen.blit(text2, (470, 100))
 
         pygame.display.flip()

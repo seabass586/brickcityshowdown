@@ -122,7 +122,7 @@ def run_game():
 def present_text(screen):
     player_HP = player.HP
     boss_HP = boss.HP
-    myfont = pygame.font.SysFont('Comic Sans MS', 30)
+    myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 30)
     player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
     boss_HP_text = myfont.render("Rickie's Health: " + str(boss_HP), False, WHITE)
     screen.blit(player_HP_text, (0, 0))

@@ -1,6 +1,5 @@
 import pygame
 import shooter
-import Bullet
 
 
 class Boss(pygame.sprite.Sprite):

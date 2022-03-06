@@ -211,7 +211,8 @@ def boss_collision_detection(song):
                     mad_song = pygame.mixer.Sound("assets/ANGRY RAT.wav")
                     mad_song.set_volume(0.2)
                     pygame.mixer.Sound.play(mad_song, -1)
-                    boss.image = pygame.transform.scale(pygame.image.load("assets/buffRat.png"), (200, 200))
+                    boss.image = pygame.transform.scale(pygame.image.load("assets/buffRat.png"), (250, 250))
+                    boss.rect.bottom = 320
 
                 if boss.HP == 10:
                     m = Mob.Mob()

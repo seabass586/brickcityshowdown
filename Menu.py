@@ -1,6 +1,7 @@
 import pygame
 import shooter
 import main
+import Story
 
 pygame.init()
 pygame.display.set_caption("Start Game")
@@ -23,7 +24,8 @@ def startscreen():
             if ev.type == pygame.QUIT: 
                 pygame.quit()   
             if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 610 <= mouse[0] <= 610+140 and 450 <= mouse[1] <= 490: 
+                if 610 <= mouse[0] <= 610+140 and 450 <= mouse[1] <= 490:
+                    Story.storyScreen()
                     shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 610 <= mouse[0] <= 610+140 and 550 <= mouse[1] <= 590: 
@@ -49,13 +51,9 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
-<<<<<<< HEAD
-    text1 = bigfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
-=======
     pygame.mixer.music.stop()
 
     text1 = smallfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
->>>>>>> 09bb0e5b07d8f7ea9f8e63676d495395e3805e34
     text2 = smallfont.render('One more time!', False, shooter.WHITE)
     text3 = smallfont.render('I give up...', False, shooter.WHITE)
 

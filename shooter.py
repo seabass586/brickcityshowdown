@@ -77,6 +77,14 @@ def run_game():
         all_sprites.update()
         mobs.update()
 
+        for mob in mobs.sprites():
+            if pygame.sprite.spritecollide(mob, bullets, False):
+                mob.respawn()
+        for bullet in bullets.sprites():
+            if pygame.sprite.spritecollide(bullet, mobs, False):
+                bullet.kill()
+
+
         # detects collision, changes player HP, and stores data in a tuple
         collision_data = collision_detection(collision_time, immune)
         immune = collision_data[1]

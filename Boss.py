@@ -29,8 +29,6 @@ class Boss(pygame.sprite.Sprite):
         elif self.moved == 0:
             self.move_right = True
 
-
-
         if self.rect.right > shooter.WIDTH - 200:
             self.rect.right = shooter.WIDTH - 200
         if self.rect.left < 200:

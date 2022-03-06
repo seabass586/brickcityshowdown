@@ -1,7 +1,7 @@
 # BRICK CITY SHOWDOWN
 our submission
 # Team Members:
-- Steve Wufeng(I worked on both back-end and front-end on the project. Worked with logic of the game, and GUI for user interaction. Keep all parties connected and on the same page on our project progress.)
+- Steve Wufeng(Worked with back-end logic of the game, and front-end GUI for user interaction. Keep all parties connected and on the same page on our project progress.)
 - Jack Hunsberger
 - Sebastian Hernandez
 - Kelly Chen (I created an outline of a shmup game and drew all the artworks to the game.)

@@ -84,7 +84,9 @@ def run_game():
                         bullet.kill()
                 mob.respawn()
 
-
+        for bullet in bullets.sprites():
+            if pygame.sprite.collide_rect(bullet, boss):
+                boss.HP -= 1
 
         # detects collision, changes player HP, and stores data in a tuple
         collision_data = collision_detection(collision_time, immune)
@@ -107,10 +109,13 @@ def run_game():
 
 
 def present_text(screen):
-    HP = player.HP
+    player_HP = player.HP
+    boss_HP = boss.HP
     myfont = pygame.font.SysFont('Comic Sans MS', 30)
-    textsurface = myfont.render('Health: ' + str(HP), False, WHITE)
-    screen.blit(textsurface, (0, 0))
+    player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
+    boss_HP_text = myfont.render("Rickie's Health: " + str(boss_HP), False, WHITE)
+    screen.blit(player_HP_text, (0, 0))
+    screen.blit(boss_HP_text, (0, 40))
 
 
 def render_game(screen, game_box):

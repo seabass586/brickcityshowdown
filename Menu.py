@@ -2,6 +2,7 @@ import pygame
 import shooter
 import main
 import Story
+from sys import exit
 
 pygame.init()
 pygame.display.set_caption("Start Game")
@@ -22,14 +23,19 @@ def startscreen():
     while True:  
         for ev in pygame.event.get():     
             if ev.type == pygame.QUIT: 
-                pygame.quit()   
+                pygame.quit()
+                exit()
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 610 <= mouse[0] <= 610+140 and 450 <= mouse[1] <= 490:
                     Story.storyScreen()
                     shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 610 <= mouse[0] <= 610+140 and 550 <= mouse[1] <= 590: 
-                    pygame.quit() 
+                    pygame.quit()
+                    exit()
+            if ev.type == pygame.QUIT:
+                pygame.quit()
+                exit()
 
         mouse = pygame.mouse.get_pos() 
         new = pygame.transform.scale(bg, (1280, 720))
@@ -58,10 +64,12 @@ def deathscreen():
     while True:  
         for ev in pygame.event.get():     
             if ev.type == pygame.QUIT: 
-                pygame.quit()   
+                pygame.quit()
+                exit()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
-                    pygame.quit() 
+                    pygame.quit()
+                    exit()
 
         mouse = pygame.mouse.get_pos() 
 
@@ -86,10 +94,12 @@ def winningscreen():
     while True:  
         for ev in pygame.event.get():     
             if ev.type == pygame.QUIT: 
-                pygame.quit()   
+                pygame.quit()
+                exit()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
-                    pygame.quit() 
+                    pygame.quit()
+                    exit()
 
         mouse = pygame.mouse.get_pos() 
 

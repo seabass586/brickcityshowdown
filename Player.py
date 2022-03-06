@@ -5,7 +5,7 @@ import Bullet
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.HP = 3;
+        self.HP = 3
         self.image = pygame.transform.scale(pygame.image.load("assets/Rickie.png"), (30, 30))
         self.rect = self.image.get_rect()
         self.rect.centerx = shooter.WIDTH / 2

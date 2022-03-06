@@ -43,7 +43,7 @@ def run_game():
     dorm_room = pygame.image.load("assets/dormFloor.png")
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
-    gb2 = pygame.image.load("assets/game_box - Copy.jpg")
+    gb2 = pygame.image.load("assets/game_box - Copy.png")
     gb_small = pygame.transform.scale(gb, (300, 300))
     gb_small2 = pygame.transform.scale(gb2, (300, 300))
 

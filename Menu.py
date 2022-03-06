@@ -1,6 +1,5 @@
 import pygame
 import shooter
-import main
 import Story
 from sys import exit
 
@@ -19,6 +18,7 @@ text1 = smallfont.render("Start", True, shooter.WHITE)
 text2 = smallfont.render("Help", True, shooter.WHITE)
 text3 = smallfont.render('Quit' , True , shooter.WHITE) 
 bg = pygame.image.load("assets/mainScreen.png")
+dead = pygame.image.load("assets/Loss_screen.png")
 
 def startscreen():  
     while True:  
@@ -53,7 +53,7 @@ def startscreen():
             pygame.draw.rect(screen,DARK_GREY,[575,550,140,40]) 
 
 
-        if 610 <= mouse[0] <= 610+140 and 650 <= mouse[1] <= 550+40: 
+        if 610 <= mouse[0] <= 610+140 and 650 <= mouse[1] <= 650+40: 
             pygame.draw.rect(screen, GREY,[575,650,140,40]) 
         else: 
             pygame.draw.rect(screen,DARK_GREY,[575,650,140,40]) 
@@ -65,7 +65,6 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
-    text1 = bigfont.render('YOU GOT POPPED!', False, shooter.WHITE)
     pygame.mixer.music.stop()
     text2 = smallfont.render('Exit Game', False, shooter.WHITE)
 
@@ -75,21 +74,20 @@ def deathscreen():
                 pygame.quit()
                 exit()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
-                if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
+                if 560 <= mouse[0] <= 560+140 and 655 <= mouse[1] <= 655+40: 
                     pygame.quit()
                     exit()
 
         mouse = pygame.mouse.get_pos() 
+        new = pygame.transform.scale(dead, (1280, 720))
+        screen.blit(new, (0, 0))
 
-        screen.fill(shooter.BLACK)
-
-        if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
-            pygame.draw.rect(screen, GREY,[550,550,140,40]) 
+        if 560 <= mouse[0] <= 560+140 and 655 <= mouse[1] <= 655+40: 
+            pygame.draw.rect(screen, GREY,[550,650,140,40]) 
         else: 
-            pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
+            pygame.draw.rect(screen,DARK_GREY,[550,650,140,40]) 
 
-        screen.blit(text1, (470, 150))
-        screen.blit(text2, (560, 555))
+        screen.blit(text2, (560, 655))
 
         pygame.display.update()
 
@@ -124,4 +122,30 @@ def winningscreen():
         pygame.display.update()
 
 def helpscreen():
-    pygame.image.load("assets/")
+    control = pygame.image.load("assets/controls.png")
+    screen.blit(control, (0, 0))
+    text1 = bigfont.render('Return to main menu', False, shooter.WHITE)
+
+    while True:  
+            for ev in pygame.event.get():     
+                if ev.type == pygame.QUIT: 
+                    pygame.quit()
+                    exit()
+                if ev.type == pygame.MOUSEBUTTONDOWN: 
+                    if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
+                        pygame.quit()
+                        exit()
+
+            mouse = pygame.mouse.get_pos() 
+
+            screen.fill(shooter.BLACK)
+
+            if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
+                pygame.draw.rect(screen, GREY,[550,550,140,40]) 
+            else: 
+                pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
+
+            screen.blit(text1, (470, 150))
+            screen.blit(text2, (560, 555))
+
+            pygame.display.update()

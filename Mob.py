@@ -12,7 +12,7 @@ class Mob(pygame.sprite.Sprite):
         self.rect.x = random.randrange(490, 790 - self.rect.width)
         self.rect.y = 390
         self.speedy = random.randrange(1, 4)
-        self.speedx = random.randrange(-1, 1)
+        self.speedx = random.randrange(-1, 2)
         
         self.end_freeze_time = -1
         self.freeze = False

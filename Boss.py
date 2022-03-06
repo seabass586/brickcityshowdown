@@ -16,16 +16,20 @@ class Boss(pygame.sprite.Sprite):
         self.move_right = True
 
     def update(self):  # moving logic
-        self.moved += self.speedx
-        if self.moved == 600:
+
+        if self.move_right:
+            self.rect.x += self.speedx
+            self.moved += self.speedx
+        else:
+            self.rect.x -= self.speedx
+            self.moved -= self.speedx
+
+        if self.moved == 500:
             self.move_right = False
         elif self.moved == 0:
             self.move_right = True
 
-        if self.move_right:
-            self.rect.x += self.speedx
-        else:
-            self.rect.x -= self.speedx
+
 
         if self.rect.right > shooter.WIDTH - 200:
             self.rect.right = shooter.WIDTH - 200

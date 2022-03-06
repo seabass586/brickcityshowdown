@@ -137,8 +137,8 @@ def render_game(screen, game_box, game_box2, player_HP, dorm_room):
         player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
-    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,0))
     screen.blit(dorm_room, (0, 0))
+    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,640))
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(player_img, (110, 440))

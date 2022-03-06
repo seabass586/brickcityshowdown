@@ -16,6 +16,14 @@ class Boss(pygame.sprite.Sprite):
         self.rage = False
 
     def update(self):  # moving logic
+        if (pygame.time.get_ticks() % 2000 > 1000):
+            self.image = pygame.transform.scale(self.image, (200, 200))
+            self.rect.bottom = 350
+        else:
+            self.image = pygame.transform.scale(self.image, (200, 190))
+            self.rect.bottom = 360
+        
+        
 
         if self.move_right:
             self.rect.x += self.speedx

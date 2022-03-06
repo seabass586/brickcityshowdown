@@ -131,7 +131,7 @@ def present_text(screen):
 
 def render_game(screen, game_box, player_HP):
     if player_HP == 3:
-        player_img = pygame.image.load("assets/Player_full_health.png")
+        player_img = pygame.image.load("assets/Rickie.png")
     elif player_HP == 2:
         player_img = pygame.image.load("assets/Player_half_health.png")
     else:

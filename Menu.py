@@ -51,15 +51,10 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
-    text1 = bigfont.render('YOU WERE POPPED!', False, shooter.WHITE)
+    text1 = bigfont.render('YOU GOT POPPED!', False, shooter.WHITE)
     pygame.mixer.music.stop()
     text2 = smallfont.render('Exit Game', False, shooter.WHITE)
-    text1 = bigfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
     pygame.mixer.music.stop()
-
-    text1 = smallfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
-    text2 = smallfont.render('One more time!', False, shooter.WHITE)
-    text3 = smallfont.render('I give up...', False, shooter.WHITE)
 
     while True:  
         for ev in pygame.event.get():     
@@ -78,7 +73,7 @@ def deathscreen():
         else: 
             pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
 
-        screen.blit(text1, (460, 150))
+        screen.blit(text1, (470, 150))
         screen.blit(text2, (560, 555))
 
         pygame.display.update()

@@ -89,7 +89,7 @@ def run_game():
                     mob.set_end_freeze_time(pygame.time.get_ticks()+1000)
                     mob.update_time(pygame.time.get_ticks())
                     mob.respawn()
-            if (mob.isFreezing()):
+            if (mob.isFreezing()):    
                 mob.update_time(pygame.time.get_ticks())
 
         # process collusion with te bullets and the boss

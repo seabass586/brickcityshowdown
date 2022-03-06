@@ -113,6 +113,7 @@ def run_game():
         # after drawing everything, flip the display
         pygame.display.flip()
 
+
         if player.HP == 0:
             running = False
         if boss.HP <= 0:
@@ -167,6 +168,13 @@ def boss_collision_detection():
         for bullet in bullets.sprites():
             if pygame.sprite.collide_rect(bullet, boss):
                 boss.HP -= 1
+
+                # if the boss is at 15 hp, spawn more mobs to dodge
+                if boss.HP == 15:
+                    for i in range(2):
+                        m = Mob.Mob()
+                        all_sprites.add(m)
+                        mobs.add(m)
                 hit_sound = pygame.mixer.Sound("assets/bossHit.mp3")
                 hit_sound.set_volume(0.2)
                 pygame.mixer.Sound.play(hit_sound)

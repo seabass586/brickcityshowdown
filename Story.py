@@ -11,5 +11,5 @@ def storyScreen():
     new = pygame.transform.scale(bg, (1280, 720))
     screen.blit(new, (0, 0))
     pygame.display.update()
-    sleep(4)
+    sleep(3)
 

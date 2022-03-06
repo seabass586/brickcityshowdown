@@ -6,7 +6,7 @@ import Bullet
 class Boss(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.HP = 30
+        self.HP = 20
         self.image = pygame.transform.scale(pygame.image.load("assets/rat.png"), (200,200))
         self.rect = self.image.get_rect()
         self.rect.centerx = 190

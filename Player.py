@@ -6,8 +6,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.HP = 3;
-        self.image = pygame.Surface((20, 20))
-        self.image.fill((255, 215, 0))
+        self.image = pygame.transform.scale(pygame.image.load("assets/Rickie.png"), (30, 30))
         self.rect = self.image.get_rect()
         self.rect.centerx = shooter.WIDTH / 2
         self.rect.bottom = shooter.HEIGHT - 40

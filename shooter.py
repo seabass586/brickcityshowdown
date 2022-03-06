@@ -52,7 +52,7 @@ def run_game():
     all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(6):
+    for i in range(4):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -138,6 +138,7 @@ def render_game(screen, game_box, game_box2, player_HP, dorm_room):
     
     screen.fill(BLACK)
     screen.blit(dorm_room, (0, 0))
+    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,640))
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(player_img, (110, 440))
@@ -167,7 +168,7 @@ def boss_collision_detection():
                 boss.HP -= 1
 
                 # if the boss is at 15 hp, spawn more mobs to dodge
-                if boss.HP == 15:
+                if boss.HP == 10:
                     for i in range(2):
                         m = Mob.Mob()
                         all_sprites.add(m)

@@ -178,3 +178,5 @@ def boss_collision_detection():
                 pygame.mixer.Sound.play(hit_sound)
                 bullet.kill()
 
+
+

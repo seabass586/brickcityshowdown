@@ -55,7 +55,7 @@ def run_game():
     all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(4):
+    for i in range(6):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -133,13 +133,13 @@ def render_game(screen, game_box, player_HP):
     if player_HP == 3:
         player_img = pygame.image.load("assets/Rickie.png")
     elif player_HP == 2:
-        player_img = pygame.image.load("assets/Player_half_health.png")
+        player_img = pygame.image.load("assets/Rickie2.png")
     else:
-        player_img = pygame.image.load("assets/Player_one_health.png")
+        player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
     screen.blit(game_box, (490, 390))
-    screen.blit(player_img, (200, 390))
+    screen.blit(player_img, (110, 440))
     all_sprites.draw(screen)
 
 
@@ -163,6 +163,9 @@ def boss_collision_detection():
         for bullet in bullets.sprites():
             if pygame.sprite.collide_rect(bullet, boss):
                 boss.HP -= 1
+                hit_sound = pygame.mixer.Sound("assets/bossHit.mp3")
+                hit_sound.set_volume(0.2)
+                pygame.mixer.Sound.play(hit_sound)
                 bullet.kill()
 
 

@@ -7,6 +7,7 @@ pygame.display.set_caption("Start Game")
 
 GREY = (170,170,170)
 DARK_GREY = (100,100,100)
+mouse = 0
 
 res = (shooter.WIDTH, shooter.HEIGHT)
 screen = pygame.display.set_mode(res) 

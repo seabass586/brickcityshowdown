@@ -51,6 +51,9 @@ def startscreen():
         pygame.display.update() 
 
 def deathscreen():
+    text1 = bigfont.render('YOU WERE POPPED!', False, shooter.WHITE)
+    pygame.mixer.music.stop()
+    text2 = smallfont.render('Exit Game', False, shooter.WHITE)
     text1 = bigfont.render('YOU WERE DEFEATED!', False, shooter.WHITE)
     pygame.mixer.music.stop()
 
@@ -62,20 +65,21 @@ def deathscreen():
         for ev in pygame.event.get():     
             if ev.type == pygame.QUIT: 
                 pygame.quit()   
-            if ev.type == pygame.MOUSEBUTTONDOWN:
-                if 480 <= mouse[0] <= 480+140 and 455 <= mouse[1] <= 455+40: 
-                    shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
-                if 480 <= mouse[0] <= 480+140 and 555 <= mouse[1] <= 555+40: 
+                if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
                     pygame.quit() 
 
         mouse = pygame.mouse.get_pos() 
 
         screen.fill(shooter.BLACK)
 
+        if 560 <= mouse[0] <= 560+140 and 555 <= mouse[1] <= 555+40: 
+            pygame.draw.rect(screen, GREY,[550,550,140,40]) 
+        else: 
+            pygame.draw.rect(screen,DARK_GREY,[550,550,140,40]) 
+
         screen.blit(text1, (460, 150))
-        screen.blit(text2, (480, 455))
-        screen.blit(text3, (480, 555))
+        screen.blit(text2, (560, 555))
 
         pygame.display.update()
 

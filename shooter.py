@@ -101,7 +101,7 @@ def run_game():
         player_collision_time = player_collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small)
+        render_game(screen, gb_small, player.HP)
 
         # present the text onto the screen
         present_text(screen)
@@ -127,9 +127,17 @@ def present_text(screen):
     screen.blit(boss_HP_text, (0, 40))
 
 
-def render_game(screen, game_box):
+def render_game(screen, game_box, player_HP):
+    if player_HP == 3:
+        player_img = pygame.image.load("assets/Player_full_health.png")
+    elif player_HP == 2:
+        player_img = pygame.image.load("assets/Player_half_health.png")
+    else:
+        player_img = pygame.image.load("assets/Player_one_health.png")
+    
     screen.fill(BLACK)
     screen.blit(game_box, (490, 390))
+    screen.blit(player_img, (200, 390))
     all_sprites.draw(screen)
 
 

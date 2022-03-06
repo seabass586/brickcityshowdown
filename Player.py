@@ -62,7 +62,7 @@ class Player(pygame.sprite.Sprite):
         pygame.mixer.Sound.play(hit_sound)
 
         if self.isConcious():
-            self.HP -=1
+            self.HP -=1                
             if self.HP == 1:
                 pygame.mixer.music.load("assets/lowHP.mp3")
                 pygame.mixer.music.play(-1)

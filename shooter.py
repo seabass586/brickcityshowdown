@@ -80,7 +80,7 @@ def run_game():
         collision_time = collision_data[0]
 
         # draw/render
-        render_game(screen, gb_small)
+        render_game(screen, gb_small, rickie)
 
         # present the text onto the screen
         present_text(screen)

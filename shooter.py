@@ -52,7 +52,7 @@ def run_game():
     all_sprites.add(boss)
 
     # add 8 mobs to the master sprite group
-    for i in range(6):
+    for i in range(4):
         m = Mob.Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -137,6 +137,7 @@ def render_game(screen, game_box, game_box2, player_HP, dorm_room):
         player_img = pygame.image.load("assets/Rickie3.png")
     
     screen.fill(BLACK)
+    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,0))
     screen.blit(dorm_room, (0, 0))
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
@@ -167,7 +168,7 @@ def boss_collision_detection():
                 boss.HP -= 1
 
                 # if the boss is at 15 hp, spawn more mobs to dodge
-                if boss.HP == 15:
+                if boss.HP == 10:
                     for i in range(2):
                         m = Mob.Mob()
                         all_sprites.add(m)
@@ -176,25 +177,4 @@ def boss_collision_detection():
                 hit_sound.set_volume(0.2)
                 pygame.mixer.Sound.play(hit_sound)
                 bullet.kill()
-
-
-# def victory(screen):
-#     pygame.mixer.music.stop()
-
-#     while True:
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 pygame.quit()
-#                 exit()
-#             elif event.type == pygame.KEYDOWN:
-#                 if event.key == pygame.K_ESCAPE:
-#                     pygame.quit()
-#                     exit()
-
-#         screen.fill(BLACK)
-#         myfont = pygame.font.SysFont('Comic Sans MS', 30)
-#         textsurface = myfont.render('YOU DEFEATED RICKIE!', False, WHITE)
-#         screen.blit(textsurface, (470, 360))
-
-#         pygame.display.flip()
 

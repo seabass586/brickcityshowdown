@@ -6,8 +6,16 @@ import random
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((20, 20))
-        self.image.fill(shooter.RED)
+
+        random_var = random.randrange(0,3)
+        if random_var == 0:
+            self.image = pygame.image.load("assets/bacteria1.png")
+        elif random_var == 1:
+            self.image = pygame.image.load("assets/bacteria2.png")
+        elif random_var == 2:
+            self.image = pygame.image.load("assets/bacteria3.png")
+
+
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(490, 790 - self.rect.width)
         self.rect.y = 390
@@ -35,11 +43,9 @@ class Mob(pygame.sprite.Sprite):
         if (time - self.end_freeze_time > 0):
             self.freeze = False
             self.end_freeze_time = -1
-            self.image.fill(shooter.RED)
             self.respawn()
         else:
             self.freeze = True
-            self.image.fill(shooter.SHADED_RED)
     
     def set_end_freeze_time(self, end_time):
         self.end_freeze_time = end_time 

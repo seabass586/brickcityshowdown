@@ -64,7 +64,7 @@ def deathscreen():
                 pygame.quit()   
             if ev.type == pygame.MOUSEBUTTONDOWN:
                 if 480 <= mouse[0] <= 480+140 and 455 <= mouse[1] <= 455+40: 
-                    main.main()
+                    shooter.run_game()
             if ev.type == pygame.MOUSEBUTTONDOWN: 
                 if 480 <= mouse[0] <= 480+140 and 555 <= mouse[1] <= 555+40: 
                     pygame.quit() 

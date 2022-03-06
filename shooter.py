@@ -1,11 +1,10 @@
 import pygame
 import Mob
 import Player
+import SoundPlayer
 import Bullet
 import random
 import os
-
-# from tinker import *
 
 WIDTH = 1280
 HEIGHT = 720
@@ -70,33 +69,49 @@ def main():
         all_sprites.update()
         mobs.update()
 
-        # if the player is no longer immune to damage, turn off immunity
-        if (pygame.time.get_ticks() - collision_time) > 2000:
-            immune = False
-
-        # check to see if a mob hit the player
-        hits = pygame.sprite.spritecollide(player, mobs, False)
-        if hits and immune is False:
-            running = player.Hit()
-            collision_time = pygame.time.get_ticks()
-            immune = True
-
+        # detects collision, changes player HP, and stores data in a tuple
+        collision_data = collision_detection(collision_time, immune)
+        immune = collision_data[1]
+        collision_time = collision_data[0]
 
         # draw/render
-        screen.fill(BLACK)
-        screen.blit(gb_small, (490, 390))
-        all_sprites.draw(screen)
+        render_game(screen, gb_small)
 
-        # text
-        HP = player.HP
-        myfont = pygame.font.SysFont('Comic Sans MS', 30)
-        textsurface = myfont.render('Health: ' + str(HP), False, WHITE)
-        screen.blit(textsurface, (0, 0))
+        # present the text onto the screen
+        present_text(screen)
 
         # after drawing everything, flip the display
         pygame.display.flip()
 
     pygame.quit()
+
+
+def present_text(screen):
+    HP = player.HP
+    myfont = pygame.font.SysFont('Comic Sans MS', 30)
+    textsurface = myfont.render('Health: ' + str(HP), False, WHITE)
+    screen.blit(textsurface, (0, 0))
+
+
+def render_game(screen, game_box):
+    screen.fill(BLACK)
+    screen.blit(game_box, (490, 390))
+    all_sprites.draw(screen)
+
+
+def collision_detection(collision_time, immune):
+    # if the player is no longer immune to damage, turn off immunity
+    if (pygame.time.get_ticks() - collision_time) > 2000:
+        immune = False
+
+    # check to see if a mob hit the player
+    hits = pygame.sprite.spritecollide(player, mobs, False)
+    if hits and immune is False:
+        player.Hit()
+        collision_time = pygame.time.get_ticks()
+        immune = True
+
+    return collision_time, immune
 
 
 if __name__ == "__main__":

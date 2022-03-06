@@ -115,7 +115,8 @@ def run_game():
         if player.HP == 0:
             running = False
         if boss.HP <= 0:
-            victory(screen)
+            # victory(screen)
+            Menu.winningscreen()
 
     Menu.deathscreen()
 
@@ -179,23 +180,23 @@ def boss_collision_detection():
                 bullet.kill()
 
 
-def victory(screen):
-    pygame.mixer.music.stop()
+# def victory(screen):
+#     pygame.mixer.music.stop()
 
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    exit()
+#     while True:
+#         for event in pygame.event.get():
+#             if event.type == pygame.QUIT:
+#                 pygame.quit()
+#                 exit()
+#             elif event.type == pygame.KEYDOWN:
+#                 if event.key == pygame.K_ESCAPE:
+#                     pygame.quit()
+#                     exit()
 
-        screen.fill(BLACK)
-        myfont = pygame.font.SysFont('Comic Sans MS', 30)
-        textsurface = myfont.render('YOU DEFEATED RICKIE!', False, WHITE)
-        screen.blit(textsurface, (470, 360))
+#         screen.fill(BLACK)
+#         myfont = pygame.font.SysFont('Comic Sans MS', 30)
+#         textsurface = myfont.render('YOU DEFEATED RICKIE!', False, WHITE)
+#         screen.blit(textsurface, (470, 360))
 
-        pygame.display.flip()
+#         pygame.display.flip()
 

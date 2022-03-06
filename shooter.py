@@ -4,6 +4,7 @@ import Player
 import Bullet
 import random
 import os
+from sys import exit
 
 WIDTH = 1280
 HEIGHT = 720
@@ -22,7 +23,7 @@ mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player.Player()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-display = pygame.Surface(WIDTH,HEIGHT)
+display = pygame.Surface((WIDTH, HEIGHT))
 
 
 def UI_setup():
@@ -41,6 +42,7 @@ def run_game():
     bg = pygame.image.load("assets/bg.jpg")
     gb = pygame.image.load("assets/game_box.jpg")
     gb_small = pygame.transform.scale(gb, (300, 300))
+    rickie = pygame.image.load("assets/Rickie.png")
 
     # add the player sprite to the master sprite group
     all_sprites.add(player)
@@ -63,7 +65,7 @@ def run_game():
         # process input(events)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                pygame.quit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     player.shooter()
@@ -99,9 +101,10 @@ def present_text(screen):
     screen.blit(textsurface, (0, 0))
 
 
-def render_game(screen, game_box):
+def render_game(screen, game_box, boss):
     screen.fill(BLACK)
     screen.blit(game_box, (490, 390))
+    screen.blit(boss, (490, 0))
     all_sprites.draw(screen)
 
 
@@ -122,6 +125,15 @@ def collision_detection(collision_time, immune):
 
 def game_over(screen):
     while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    exit()
+
         screen.fill(BLACK)
         myfont = pygame.font.SysFont('Comic Sans MS', 30)
         textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)

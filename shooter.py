@@ -94,10 +94,10 @@ def run_game():
                         pygame.mixer.Sound.play(hit_germ)
                         bullet.kill()
                 if (not mob.isFreezing()):
-                    mob.set_end_freeze_time(pygame.time.get_ticks()+1000)
+                    mob.set_end_freeze_time(pygame.time.get_ticks() + 1000)
                     mob.update_time(pygame.time.get_ticks())
                     mob.respawn()
-            if (mob.isFreezing()):    
+            if (mob.isFreezing()):
                 mob.update_time(pygame.time.get_ticks())
 
         # process collusion with te bullets and the boss
@@ -117,7 +117,6 @@ def run_game():
         # after drawing everything, flip the display
         pygame.display.flip()
 
-
         if player.HP == 0:
             running = False
         if boss.HP <= 0:
@@ -126,16 +125,38 @@ def run_game():
 
     Menu.deathscreen()
 
+
 def present_text(screen):
     player_HP = player.HP
     boss_HP = boss.HP
     myfont = pygame.font.Font('assets/fonts/PressStart2P-Regular.ttf', 19)
     player_HP_text = myfont.render('Your Health: ' + str(player_HP), False, WHITE)
     boss_HP_text = myfont.render("Boss Health: " + str(boss_HP), False, WHITE)
-    boss_msg = myfont.render("<Text for boss>", False, WHITE)
+
+    if boss.HP > 25:
+        boss_msg1 = myfont.render("You really think you ", False, WHITE)
+        boss_msg2 = myfont.render("can beat me!? Not a ", False, WHITE)
+        boss_msg3 = myfont.render("chance!", False, WHITE)
+        screen.blit(boss_msg1, (840, 415))
+        screen.blit(boss_msg2, (840, 440))
+        screen.blit(boss_msg3, (840, 465))
+    elif boss.HP > 10:
+        boss_msg1 = myfont.render("Now you've gone and", False, WHITE)
+        boss_msg2 = myfont.render("made me angry! Take", False, WHITE)
+        boss_msg3 = myfont.render("this!", False, WHITE)
+        screen.blit(boss_msg1, (840, 415))
+        screen.blit(boss_msg2, (840, 440))
+        screen.blit(boss_msg3, (840, 465))
+    elif boss.HP <= 10:
+        boss_msg1 = myfont.render("No! This isn't", False, WHITE)
+        boss_msg2 = myfont.render("possible! Germs,", False, WHITE)
+        boss_msg3 = myfont.render("attack!", False, WHITE)
+        screen.blit(boss_msg1, (840, 415))
+        screen.blit(boss_msg2, (840, 440))
+        screen.blit(boss_msg3, (840, 465))
+
     screen.blit(player_HP_text, (89, 415))
     screen.blit(boss_HP_text, (465, 30))
-    screen.blit(boss_msg, (840, 415))
 
 
 def render_game(screen, game_box, game_box2, game_box3, player_HP, dorm_room):
@@ -145,10 +166,10 @@ def render_game(screen, game_box, game_box2, game_box3, player_HP, dorm_room):
         player_img = pygame.image.load("assets/Rickie2.png")
     else:
         player_img = pygame.image.load("assets/Rickie3.png")
-    
+
     screen.fill(BLACK)
     screen.blit(dorm_room, (0, 0))
-    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0,640))
+    screen.blit(pygame.image.load("assets/wallpaper.jpg").convert_alpha(), (0, 640))
     screen.blit(game_box2, (490, 390))
     screen.blit(pygame.transform.scale(game_box, (290, 290)), (80, 400))
     screen.blit(pygame.transform.scale(game_box3, (400, 290)), (830, 400))
@@ -181,20 +202,20 @@ def boss_collision_detection(song):
                 # if the boss is at 15 hp, spawn more mobs to dodge
 
                 if boss.HP == 25:
+                    boss.rage = True
                     song.stop()
                     mad_song = pygame.mixer.Sound("assets/ANGRY RAT.wav")
                     mad_song.set_volume(0.2)
                     pygame.mixer.Sound.play(mad_song, -1)
-                    boss.image = pygame.transform.scale(pygame.image.load("assets/buffRat.png"), (200,200))
+                    boss.image = pygame.transform.scale(pygame.image.load("assets/buffRat.png"), (200, 200))
 
                     for i in range(2):
                         m = Mob.Mob()
                         all_sprites.add(m)
                         mobs.add(m)
 
-
                 if boss.HP == 10:
-                    for i in range(2):
+                    for i in range(1):
                         m = Mob.Mob()
                         all_sprites.add(m)
                         mobs.add(m)
@@ -202,6 +223,3 @@ def boss_collision_detection(song):
                 hit_sound.set_volume(0.2)
                 pygame.mixer.Sound.play(hit_sound)
                 bullet.kill()
-
-
-

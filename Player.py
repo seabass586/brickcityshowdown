@@ -69,3 +69,8 @@ class Player(pygame.sprite.Sprite):
                 pygame.mixer.music.load("assets/lowHP.mp3")
                 pygame.mixer.music.play(-1)
                 pygame.mixer.music.set_volume(0.5)
+
+            elif self.HP == 0:
+                death = pygame.mixer.Sound("assets/DEATH.mp3")
+                death.set_volume(0.5)
+                pygame.mixer.Sound.play(death)

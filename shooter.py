@@ -22,6 +22,8 @@ all_sprites = pygame.sprite.Group()
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player.Player()
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+display = pygame.Surface(WIDTH,HEIGHT)
 
 
 def UI_setup():
@@ -34,7 +36,6 @@ def main():
     UI_setup()
 
     # initialize pygame and create window
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("BrickBreaker")
     clock = pygame.time.Clock()
 

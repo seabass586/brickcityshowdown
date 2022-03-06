@@ -58,8 +58,11 @@ class Player(pygame.sprite.Sprite):
     
     def Hit(self):
         hit_sound = pygame.mixer.Sound("assets/owwFast.wav")
+        hit_sound2 = pygame.mixer.Sound("assets/pop.mp3")
         hit_sound.set_volume(0.2)
+        hit_sound2.set_volume(0.6)
         pygame.mixer.Sound.play(hit_sound)
+        pygame.mixer.Sound.play(hit_sound2)
 
         if self.isConcious():
             self.HP -=1                

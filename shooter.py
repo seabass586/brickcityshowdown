@@ -1,4 +1,6 @@
 from ast import While
+from asyncio import run
+from pickle import MEMOIZE
 import pygame
 import Mob
 import Player
@@ -7,6 +9,7 @@ import Bullet
 import random
 import os
 from sys import exit
+import Menu
 
 WIDTH = 1280
 HEIGHT = 720
@@ -113,8 +116,7 @@ def run_game():
         if boss.HP <= 0:
             victory(screen)
 
-    game_over(screen)
-
+    Menu.deathscreen()
 
 def present_text(screen):
     player_HP = player.HP
@@ -175,23 +177,3 @@ def victory(screen):
 
         pygame.display.flip()
 
-
-def game_over(screen):
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
-                    pygame.quit()
-                    exit()
-
-        screen.fill(BLACK)
-        myfont = pygame.font.SysFont('Comic Sans MS', 30)
-        textsurface = myfont.render('YOU WERE DEFEATED!', False, WHITE)
-        text2 = myfont.render('Want to try again?', False, WHITE )
-        screen.blit(textsurface, (470, 360))
-        screen.blit(text2, (470, 100))
-
-        pygame.display.flip()

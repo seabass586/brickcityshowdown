@@ -4,8 +4,7 @@ import shooter
 
 def game_loop():
     Menu.startscreen()
-    shooter.run_game()
-
+    
 def main():
     game_loop()
 
